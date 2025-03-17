@@ -1,4 +1,3 @@
-import time
 from conftest import *
 import allure
 from urls import Urls
@@ -20,7 +19,6 @@ class TestAccountPage:
         account_page = AccountPage(driver)
         order_history_page = OrderFeedPage(driver)
         auth_to_account()
-        time.sleep(5)
         main_page.click_on_personal_account_in_header()
         account_page.click_on_order_history_button()
         order_history_page.wait_visibility_of_order_card()
@@ -31,7 +29,6 @@ class TestAccountPage:
         main_page = MainPage(driver)
         account_page = AccountPage(driver)
         auth_to_account()
-        time.sleep(5)
         main_page.click_on_personal_account_in_header()
         account_page.wait_visibility_of_description()
         account_page.click_on_logout_button()

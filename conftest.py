@@ -36,7 +36,7 @@ def auth_to_account(driver):
     def login_acc():
         main_page = MainPage(driver)
         recovery_pass = RecoveryPassPage(driver)
-        time.sleep(3)
+        main_page.wait_time()
         main_page.click_on_button_login_in_main()
         recovery_pass.send_email()
         recovery_pass.send_password()

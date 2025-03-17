@@ -2,8 +2,6 @@ from conftest import *
 from page_objects.recovery_page import RecoveryPassPage
 from page_objects.main_page import MainPage
 import allure
-import time
-
 
 class TestPasswdRecoveryPage:
     @allure.title('Проверка перехода на страницу восстановления пароля')
@@ -31,7 +29,7 @@ class TestPasswdRecoveryPage:
         main_page.click_on_button_login_in_main()
         recovery_page.navigate_to_recovery_passwd_page()
         recovery_page.click_on_recovery_button()
-        time.sleep(2)
+        main_page.wait_time()
         recovery_page.send_email()
         recovery_page.click_on_eye_icon()
         assert recovery_page.is_password_field_active()

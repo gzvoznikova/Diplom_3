@@ -1,4 +1,3 @@
-import time
 from page_objects.main_page import MainPage
 from page_objects.order_feed_page import OrderFeedPage
 from page_objects.account_page import AccountPage
@@ -13,7 +12,6 @@ class TestFeedPage:
         main_page = MainPage(driver)
         order_feed_page = OrderFeedPage(driver)
         main_page.click_header_feed_button()
-        time.sleep(3)
         order_feed_page.click_on_order_card()
         assert 'бургер' in order_feed_page.get_text_on_title_of_modal_order()
 
@@ -24,7 +22,6 @@ class TestFeedPage:
         acc_page = AccountPage(driver)
         order_feed_page = OrderFeedPage(driver)
         auth_to_account()
-        time.sleep(3)
         main_page.create_order_in_main()
         main_page.open_main_page()
         main_page.click_on_personal_account_in_header()
@@ -38,7 +35,6 @@ class TestFeedPage:
         main_page = MainPage(driver)
         order_feed_page = OrderFeedPage(driver)
         auth_to_account()
-        time.sleep(3)
         main_page.click_header_feed_button()
         count_1 = order_feed_page.get_quantity_of_orders()
         main_page.create_order_in_main()
@@ -51,7 +47,6 @@ class TestFeedPage:
         main_page = MainPage(driver)
         order_feed_page = OrderFeedPage(driver)
         auth_to_account()
-        time.sleep(3)
         main_page.click_header_feed_button()
         count_1 = order_feed_page.get_daily_quantity_of_orders()
         main_page.create_order_in_main()
@@ -64,11 +59,9 @@ class TestFeedPage:
         main_page = MainPage(driver)
         order_feed_page = OrderFeedPage(driver)
         auth_to_account()
-        time.sleep(3)
         main_page.drag_and_drop_ingredient_to_order()
         main_page.click_on_button_make_order()
         new_order_id = main_page.get_number_of_order_in_modal_confirmation()
         main_page.click_on_button_close_confirmation_modal()
         main_page.click_header_feed_button()
-        time.sleep(2)
         assert order_feed_page.get_order_number_in_feed_progress_section() == f'0{new_order_id}'

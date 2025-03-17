@@ -19,7 +19,7 @@ class BasePage:
     def wait_for_url(self, url):
         self.wait.until(EC.url_to_be(url))
 
-    @allure.step('Подождать прогрузки элемента')
+    @allure.step('Ожидание прогрузки элемента')
     def wait_visibility_of_element(self, locator):
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(locator))
 
@@ -92,11 +92,11 @@ class BasePage:
 
     @allure.step('Подождать, пока элемент закроется')
     def wait_for_closing_of_element(self, locator):
-        WebDriverWait(self.driver, 15).until_not(expected_conditions.visibility_of_element_located(locator))
+        WebDriverWait(self.driver, 5).until_not(expected_conditions.visibility_of_element_located(locator))
 
     @allure.step('Проверить кликабельность элемента')
     def check_element_is_clickable(self, locator):
-        return WebDriverWait(self.driver, 15).until(expected_conditions.element_to_be_clickable(locator))
+        return WebDriverWait(self.driver, 5).until(expected_conditions.element_to_be_clickable(locator))
 
     @allure.step('Подождать смену текста на элементе')
     def wait_for_element_to_change_text(self, locator, value):

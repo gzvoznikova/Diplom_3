@@ -1,10 +1,15 @@
 from page_objects.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
+from selenium.webdriver.support.wait import WebDriverWait
 import allure
 from urls import Urls
 
 
 class MainPage(BasePage):
+
+    @allure.step("Ожидание открытия страницы")
+    def wait_time(self):
+        WebDriverWait(self.driver, 3)
 
     @allure.step("Открыть главную страницу")
     def open_main_page(self):
@@ -12,11 +17,13 @@ class MainPage(BasePage):
 
     @allure.step('Кликнуть по кнопке перехода в личный кабинет в хэдере')
     def click_on_personal_account_in_header(self):
+        self.wait_time()
         self.wait_visibility_of_element(MainPageLocators.button_personal_account)
         self.click_on_element(MainPageLocators.button_personal_account)
 
     @allure.step('Кликнуть по кнопке "Лента заказов" в хэдере')
     def click_header_feed_button(self):
+        self.wait_time()
         self.wait_visibility_of_element(MainPageLocators.button_order_feed_in_header)
         self.click_on_element(MainPageLocators.button_order_feed_in_header)
 
@@ -35,6 +42,7 @@ class MainPage(BasePage):
 
     @allure.step('Проверить отображение окна о создании заказа')
     def check_displaying_of_confirmation_modal_of_order(self):
+        self.wait_time()
         self.wait_visibility_of_element(MainPageLocators.confirmation_modal_of_order)
         return self.check_displaying_of_element(MainPageLocators.confirmation_modal_of_order)
 
@@ -63,6 +71,7 @@ class MainPage(BasePage):
     def drag_and_drop_ingredient_to_order(self):
         source_to = self.find_element_with_wait(MainPageLocators.burger_ingredient)
         target_from = self.find_element_with_wait(MainPageLocators.place_for_ingredients)
+        self.wait_time()
         self.drag_and_drop(source_to, target_from)
 
     @allure.step('Получить количество ингредиентов')
@@ -93,6 +102,7 @@ class MainPage(BasePage):
 
     @allure.step('Создание заказа на главной странице ')
     def create_order_in_main(self):
+        self.wait_time()
         self.click_on_button_constructor()
         self.drag_and_drop_ingredient_to_order()
         self.click_on_button_make_order_in_main()

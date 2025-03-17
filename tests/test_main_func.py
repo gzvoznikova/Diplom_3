@@ -2,7 +2,6 @@ from conftest import *
 from page_objects.main_page import MainPage
 from page_objects.order_feed_page import OrderFeedPage
 import allure
-import time
 
 
 class TestMainPage:
@@ -45,5 +44,4 @@ class TestMainPage:
         auth_to_account()
         main_page.drag_and_drop_ingredient_to_order()
         main_page.click_on_button_make_order()
-        time.sleep(2)
         assert main_page.check_displaying_of_confirmation_modal_of_order()
